@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    aaa
     <main-tab-bar />
   </div>
 </template>
