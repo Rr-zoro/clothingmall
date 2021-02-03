@@ -34,6 +34,7 @@ export default {
   methods: {
     spanClick(index) {
       this.activeIndex = index;
+      this.$emit("tabClick", index);
     },
   },
 };

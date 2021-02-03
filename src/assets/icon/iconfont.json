@@ -1,0 +1,37 @@
+{
+  "id": "2258577",
+  "name": "new pro",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "18444315",
+      "name": "五角星",
+      "font_class": "wujiaoxing",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "18643947",
+      "name": "放大镜",
+      "font_class": "fangdajing",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "18719776",
+      "name": "未标题-1",
+      "font_class": "weibiaoti-1",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "6399657",
+      "name": "箭头",
+      "font_class": "weibiaoti--",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    }
+  ]
+}
