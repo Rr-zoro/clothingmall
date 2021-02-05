@@ -1,7 +1,14 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物车</div></nav-bar>
-    <scroll class="content" ref="scroll">
+    <scroll
+      class="content"
+      ref="scroll"
+      @scroll="contentScroll"
+      :probeType="3"
+      :pull-up-load="true"
+      @pullingUp="loadMore"
+    >
       <home-swiper :banners="banners"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
@@ -12,7 +19,7 @@
       ></tab-control>
       <goods-list :goods="showGood"></goods-list>
     </scroll>
-    <back-top @click.native="backClick"></back-top>
+    <back-top @click.native="backClick" v-show="isShow"></back-top>
   </div>
 </template>
 
@@ -51,6 +58,7 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
+      isShow: false,
     };
   },
   created() {
@@ -58,6 +66,12 @@ export default {
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
+  },
+  mounted() {
+    const refresh = this.debounce(this.$refs.scroll.refresh, 300);
+    this.$bus.$on("itemImageLoad", () => {
+      refresh();
+    });
   },
   computed: {
     showGood() {
@@ -79,10 +93,23 @@ export default {
         // console.log(res);
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
+
+        setTimeout(() => {
+          this.$refs.scroll.finishPullUp();
+        }, 1000);
       });
     },
+    // 防抖函数
+    debounce(fn, delay) {
+      let timeout = null;
+      return function () {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          fn.apply(this, arguments);
+        }, delay);
+      };
+    },
     tabClick(index) {
-      console.log(index);
       switch (index) {
         case 0:
           this.currentType = "pop";
@@ -97,6 +124,13 @@ export default {
     },
     backClick() {
       this.$refs.scroll.scrollTo(0, 0);
+    },
+    contentScroll(position) {
+      this.isShow = -position.y > 1500;
+    },
+    loadMore() {
+      // console.log("上拉加载更多");
+      this.getHomeGoods(this.currentType);
     },
   },
 };

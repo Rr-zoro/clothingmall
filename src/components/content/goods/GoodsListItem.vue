@@ -1,6 +1,6 @@
 <template>
   <div id="goodsListItem">
-    <img :src="goodsItem.show.img" alt="" />
+    <img :src="goodsItem.show.img" alt="" @load="iamgeLoad" />
     <div class="text">
       <p class="title">{{ goodsItem.title }}</p>
       <span class="yuan">￥</span>
@@ -27,6 +27,11 @@ export default {
       default() {
         return [];
       },
+    },
+  },
+  methods: {
+    iamgeLoad() {
+      this.$bus.$emit("itemImageLoad");
     },
   },
 };
