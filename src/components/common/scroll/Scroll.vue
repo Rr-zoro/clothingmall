@@ -45,14 +45,17 @@ export default {
 
   methods: {
     scrollTo(x, y, time = 300) {
-      this.scroll.scrollTo(x, y, time);
+      this.scroll && this.scroll.scrollTo(x, y, time);
     },
     finishPullUp() {
-      this.scroll.finishPullUp();
+      this.scroll && this.scroll.finishPullUp();
     },
     refresh() {
-      console.log("======");
-      this.scroll.refresh();
+      this.scroll && this.scroll.refresh();
+    },
+    getScrollY() {
+      // scroll.y 是向下滚动的距离
+      return this.scroll ? this.scroll.y : 0;
     },
   },
 };

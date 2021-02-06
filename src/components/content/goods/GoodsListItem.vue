@@ -1,5 +1,5 @@
 <template>
-  <div id="goodsListItem">
+  <div id="goodsListItem" @click="itemClick">
     <img :src="goodsItem.show.img" alt="" @load="iamgeLoad" />
     <div class="text">
       <p class="title">{{ goodsItem.title }}</p>
@@ -32,6 +32,9 @@ export default {
   methods: {
     iamgeLoad() {
       this.$bus.$emit("itemImageLoad");
+    },
+    itemClick() {
+      this.$router.push("/detail/" + this.goodsItem.iid);
     },
   },
 };

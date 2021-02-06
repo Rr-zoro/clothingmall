@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <keep-alive>
+      <!-- 跳转到其他页面时，保持页面不销毁 -->
+      <router-view />
+    </keep-alive>
     <main-tab-bar />
   </div>
 </template>
