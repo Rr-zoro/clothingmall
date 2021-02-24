@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     iamgeLoad() {
+      // console.log("imgload");
       this.$bus.$emit("itemImageLoad");
     },
     itemClick() {

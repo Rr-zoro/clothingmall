@@ -97,8 +97,8 @@ export default {
     this.$refs.scroll.refresh();
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
   },
-  // 离开时记录滚动的距离，保存到saveY中
   deactivated() {
+    // 离开时记录滚动的距离，保存到saveY中
     // console.log(this.$refs.scroll.getScrollY());
     this.saveY = this.$refs.scroll.getScrollY();
     // this.saveY = -1000;
@@ -141,7 +141,6 @@ export default {
     /*网络请求*/
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
-        console.log(res);
         this.banners = res.data.banner.list;
         this.recommends = res.data.recommend.list;
       });
@@ -149,7 +148,6 @@ export default {
     getHomeGoods(type) {
       const page = this.goods[type].page + 1;
       getHomeGoods(type, page).then((res) => {
-        // console.log(res);
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
 

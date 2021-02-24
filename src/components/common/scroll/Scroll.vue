@@ -32,7 +32,7 @@ export default {
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
     });
-    // 监听滚动的位置
+    // 监听滚动的位置，向Home.vue发送 ‘scroll’事件
     this.scroll.on("scroll", (position) => {
       this.$emit("scroll", position);
     });

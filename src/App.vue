@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive>
+    <keep-alive exclude="Detail">
       <!-- 跳转到其他页面时，保持页面不销毁 -->
       <router-view />
     </keep-alive>

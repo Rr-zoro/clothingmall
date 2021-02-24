@@ -1,15 +1,14 @@
-import originAxios from 'axios'
+import axios from 'axios'
 
-export default function axios(option) {
-  return new Promise((resolve, reject) => {
-    const intance = new originAxios.create({
-      baseURL: '/url',
-      timeout: 5000
-    })
-    intance(option).then(res => {
-      resolve(res)
-    }).catch(err => {
-      reject(err)
-    })
+export function request(config) {
+  const instance = axios.create({
+    baseURL: '',
+    timeout: 5000
   })
+  instance.interceptors.request.use(config => {
+    return config
+  }, err => {
+    console.log(err);
+  })
+  return instance(config)
 }
