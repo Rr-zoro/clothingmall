@@ -12,9 +12,11 @@
       class="content"
       ref="scroll"
       @scroll="contentScroll"
+      @pullingUp="loadMore"
+      @pullingDown="pullDownRefresh"
       :probeType="3"
       :pull-up-load="true"
-      @pullingUp="loadMore"
+      :pull-down-refresh="true"
     >
       <home-swiper
         :banners="banners"
@@ -131,8 +133,12 @@ export default {
       this.isShow = -position.y > 1500;
       this.isTabControl1Show = -position.y > this.tabOffsetTop;
     },
+    pullDownRefresh() {
+      this.isHome = true;
+      this.getHomeMultidata();
+      this.getHomeGoods("pop");
+    },
     loadMore() {
-      // console.log("上拉加载更多");
       this.getHomeGoods(this.currentType);
     },
     swiperImageLoad() {
@@ -152,6 +158,7 @@ export default {
         this.goods[type].page += 1;
 
         this.$refs.scroll.finishPullUp();
+        this.$refs.scroll.finishPullDown();
       });
     },
   },
@@ -162,6 +169,7 @@ export default {
   position: relative;
   height: 100vh;
 }
+
 .home-nav {
   width: 100%;
   background-color: #e99a00;
